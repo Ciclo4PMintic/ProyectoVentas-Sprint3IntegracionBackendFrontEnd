@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import '../css/main.css'
-import '../css/formatoHome.css'
-import '../plugins/fontawesome-free/css/all.min.css'
-import'../dist/css/adminlte.min.css'
-
+import "../css/main.css";
+import "../css/formatoHome.css";
+import "../plugins/fontawesome-free/css/all.min.css";
+import "../dist/css/adminlte.min.css";
 
 const ResetPassword = ({ match }) => {
   const [password, setPassword] = useState("");

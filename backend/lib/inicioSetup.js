@@ -1,7 +1,6 @@
-
 const Role = require("../models/Role");
 
- const createRoles = async () => {
+const createRoles = async () => {
   try {
     // Count Documents
     const count = await Role.estimatedDocumentCount();
@@ -22,6 +21,4 @@ const Role = require("../models/Role");
   }
 };
 
-
-  
 module.exports = createRoles;

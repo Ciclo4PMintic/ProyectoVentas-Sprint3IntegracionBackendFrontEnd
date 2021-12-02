@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import '../css/main.css'
-import '../css/formatoHome.css'
-import '../plugins/fontawesome-free/css/all.min.css'
-import'../dist/css/adminlte.min.css'
+import "../css/main.css";
+import "../css/formatoHome.css";
+import "../plugins/fontawesome-free/css/all.min.css";
+import "../dist/css/adminlte.min.css";
 
 const Register = ({ history }) => {
   const [username, setUsername] = useState("");
@@ -15,7 +15,7 @@ const Register = ({ history }) => {
   const [bDate, setBdate] = useState("");
   const [identification, setIdentification] = useState("");
   const [roles, setRoles] = useState("");
-  
+
   const [error, setError] = useState("");
 
   const registerHandler = async (e) => {
@@ -46,14 +46,11 @@ const Register = ({ history }) => {
           phone,
           bDate,
           identification,
-          roles
-          
-         
-
+          roles,
         },
         config
       );
-      console.log(data)
+      console.log(data);
 
       localStorage.setItem("authToken", data.token);
 
@@ -66,57 +63,47 @@ const Register = ({ history }) => {
     }
   };
   function readValue() {
-    var m=document.getElementById('list').value;
-    console.log(m)
-  
-    var z=[]
-    if (m=="admin"){
-      z.push("admin")
-     
-     setRoles(z)
+    var m = document.getElementById("list").value;
+    console.log(m);
 
-    }
-    else if (m=="usuario"){
-      z.push("usuario")
-      setRoles(z)
-    }
+    var z = [];
+    if (m == "admin") {
+      z.push("admin");
 
-   else  if (m=="lider"){
-    z.push("lider")
-    setRoles(z)
-    }
-
-  
-    else {
-    console.log('You selected: ', m)
+      setRoles(z);
+    } else if (m == "usuario") {
+      z.push("usuario");
+      setRoles(z);
+    } else if (m == "lider") {
+      z.push("lider");
+      setRoles(z);
+    } else {
+      console.log("You selected: ", m);
     }
   }
- 
-
-
 
   return (
     <div className="register-screen">
       <form onSubmit={registerHandler} className="register-screen__form">
-        <h1 >Register</h1>
+        <h1>Register</h1>
         {error && <span className="error-message">{error}</span>}
         <div className="form-group">
           <label htmlFor="name">Username:</label>
           <div>
-          <input
-            type="text"
-            required
-            id="name"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+            <input
+              type="text"
+              required
+              id="name"
+              placeholder="Enter username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
         </div>
-        <br/>
+        <br />
         <div className="form-group">
           <label htmlFor="email">Email:</label>
-          
+
           <input
             type="email"
             required
@@ -126,7 +113,7 @@ const Register = ({ history }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <br/>
+        <br />
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
@@ -139,7 +126,7 @@ const Register = ({ history }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <br/>
+        <br />
         <div className="form-group">
           <label htmlFor="confirmpassword">Confirm Password:</label>
           <input
@@ -152,53 +139,48 @@ const Register = ({ history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <br/>
+        <br />
         <div className="form-group">
           <label htmlFor="phone">Phone:</label>
           <input
             type="number"
-            
             id="phone"
             placeholder="Enter phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
         </div>
-        <br/>
+        <br />
         <div className="form-group">
           <label htmlFor="bDate">Birthday:</label>
           <input
-              type="date"  
-
-              min="1900-01-01" max="2050-12-31"
-            
+            type="date"
+            min="1900-01-01"
+            max="2050-12-31"
             id="bDate"
             placeholder="Enter Birthday"
             value={bDate}
             onChange={(e) => setBdate(e.target.value)}
           />
         </div>
-        <br/>
+        <br />
         <div>
-        <label htmlFor="roles">Roles:</label>
-        <div>
-        <select id="list" onChange={readValue} >
-       
-        <option value="none">none</option>
-            <option value="admin">admin</option>
-            <option value="usuario">usuario</option>
-            <option value="lider">lider</option>
-           
-        </select>
-        </div>
+          <label htmlFor="roles">Roles:</label>
+          <div>
+            <select id="list" onChange={readValue}>
+              <option value="none">none</option>
+              <option value="admin">admin</option>
+              <option value="usuario">usuario</option>
+              <option value="lider">lider</option>
+            </select>
+          </div>
         </div>
 
-        <br/>
+        <br />
         <div className="form-group">
           <label htmlFor="idnetification">Cedula:</label>
           <input
             type="number"
-            
             id="identification"
             placeholder="cedula"
             value={identification}
@@ -206,15 +188,11 @@ const Register = ({ history }) => {
           />
         </div>
 
-
-      
-        
-     
-        <br/>
+        <br />
         <div>
-        <button id="register" type="submit" className="btn btn-primary">
-          Register
-        </button>
+          <button id="register" type="submit" className="btn btn-primary">
+            Register
+          </button>
         </div>
         <span className="register-screen__subtext">
           Already have an account? <Link to="/login">Login</Link>
@@ -222,8 +200,6 @@ const Register = ({ history }) => {
       </form>
     </div>
   );
- 
-
 };
 
 export default Register;

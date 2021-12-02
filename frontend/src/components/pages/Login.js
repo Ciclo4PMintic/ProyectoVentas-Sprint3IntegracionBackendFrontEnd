@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import '../css/main.css'
-import '../css/formatoHome.css'
-import '../plugins/fontawesome-free/css/all.min.css'
-import'../dist/css/adminlte.min.css'
+import "../css/main.css";
+import "../css/formatoHome.css";
+import "../plugins/fontawesome-free/css/all.min.css";
+import "../dist/css/adminlte.min.css";
 
 import { Link } from "react-router-dom";
-
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -50,59 +49,52 @@ const Login = ({ history }) => {
     <div className="login-screen">
       <form onSubmit={loginHandler} className="login-screen__form">
         <h1>AXIS</h1>
-        
+
         {error && <span className="error-message">{error}</span>}
         <div className="form-group">
           <label htmlFor="email">Email:</label>
-          <br/>
+          <br />
           <div>
-          <input
-            type="email"
-            required
-            id="email"
-           
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            tabIndex={1}
-          />
+            <input
+              type="email"
+              required
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              tabIndex={1}
+            />
           </div>
-          <br/>
+          <br />
         </div>
-        <div >
-          <label>
-            Password:{" "}
-            
-          </label>
+        <div>
+          <label>Password: </label>
           <div>
-          <input
-            type="password"
-            required
-            id="password"
-            autoComplete="true"
-           
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            tabIndex={2}
-          />
+            <input
+              type="password"
+              required
+              id="password"
+              autoComplete="true"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              tabIndex={2}
+            />
           </div>
-         
+
           <div>
-          <Link to="/forgotpassword" >
-              Forgot Password?
-            </Link>
-            </div>
+            <Link to="/forgotpassword">Forgot Password?</Link>
+          </div>
         </div>
-        <br/>
+        <br />
         <div>
-        <button id="login" type="submit" className="btn btn-primary">
-          Login
-        </button>
+          <button id="login" type="submit" className="btn btn-primary">
+            Login
+          </button>
         </div>
-        <br/>
+        <br />
         <div>
-        <button id="google" type="submit" className="btn btn-primary">
-          Ingresar con Gmail
-        </button>
+          <button id="google" type="submit" className="btn btn-primary">
+            Ingresar con Gmail
+          </button>
         </div>
 
         <span className="login-screen__subtext">

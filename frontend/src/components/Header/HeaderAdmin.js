@@ -40,12 +40,12 @@ const Header = () => {
                 </a>
               </Link>
             </li>
-
             <li className="nav-item">
               <Link to="/home">
                 {" "}
                 <a className="nav-link">
-                  Ver proyectos <span className="sr-only">(current)</span>
+                  Ver proyectos registrados{" "}
+                  <span className="sr-only">(current)</span>
                 </a>
               </Link>
             </li>
@@ -53,15 +53,7 @@ const Header = () => {
               <Link to="/home">
                 {" "}
                 <a className="nav-link">
-                  Aceptar usuarios <span className="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/home">
-                {" "}
-                <a className="nav-link">
-                  Crear nuevo proyecto{" "}
+                  Aceptar usuarios/proyectos{" "}
                   <span className="sr-only">(current)</span>
                 </a>
               </Link>
@@ -90,4 +82,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderAdmin;

@@ -35,33 +35,7 @@ const Header = () => {
               <Link to="/home">
                 {" "}
                 <a className="nav-link">
-                  Ver ususarios registrados{" "}
-                  <span className="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to="/home">
-                {" "}
-                <a className="nav-link">
-                  Ver proyectos <span className="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/home">
-                {" "}
-                <a className="nav-link">
-                  Aceptar usuarios <span className="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/home">
-                {" "}
-                <a className="nav-link">
-                  Crear nuevo proyecto{" "}
+                  Ver proyectos disponibles{" "}
                   <span className="sr-only">(current)</span>
                 </a>
               </Link>
@@ -90,4 +64,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderUser;

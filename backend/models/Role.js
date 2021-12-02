@@ -1,5 +1,5 @@
-const mongoose=require('mongoose');
- exports.ROLES= ["user", "admin", "moderator"];
+const mongoose = require("mongoose");
+exports.ROLES = ["user", "admin", "moderator"];
 
 const roleSchema = new mongoose.Schema(
   {
@@ -10,5 +10,5 @@ const roleSchema = new mongoose.Schema(
   }
 );
 
-const Role= mongoose.model("Role", roleSchema);
+const Role = mongoose.model("Role", roleSchema);
 module.exports = Role;
