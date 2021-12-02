@@ -1,8 +1,11 @@
 {
     "mongodb": {
-      "server": "cluster0.ynte1.mongodb.net",
+      "server": "cluster0.eaqta.mongodb.net",
       "database": "myFirstDatabase?retryWrites=true&w=majority",
-      "user": "andres",
-      "password": "andres"
+      "user": "web4",
+      "password": "minticweb"
     }
   }
+
+
+

@@ -13,6 +13,7 @@ const Register = ({ history }) => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [bDate, setBdate] = useState("");
+  const [identification, setIdentification] = useState("");
   const [roles, setRoles] = useState("");
   
   const [error, setError] = useState("");
@@ -44,7 +45,9 @@ const Register = ({ history }) => {
           password,
           phone,
           bDate,
+          identification,
           roles
+          
          
 
         },
@@ -73,13 +76,13 @@ const Register = ({ history }) => {
      setRoles(z)
 
     }
-    else if (m=="user"){
-      z.push("user")
+    else if (m=="usuario"){
+      z.push("usuario")
       setRoles(z)
     }
 
-   else  if (m=="moderator"){
-    z.push("moderator")
+   else  if (m=="lider"){
+    z.push("lider")
     setRoles(z)
     }
 
@@ -183,11 +186,24 @@ const Register = ({ history }) => {
        
         <option value="none">none</option>
             <option value="admin">admin</option>
-            <option value="user">user</option>
-            <option value="moderator">Moderator</option>
+            <option value="usuario">usuario</option>
+            <option value="lider">lider</option>
            
         </select>
         </div>
+        </div>
+
+        <br/>
+        <div className="form-group">
+          <label htmlFor="idnetification">Cedula:</label>
+          <input
+            type="number"
+            
+            id="identification"
+            placeholder="cedula"
+            value={identification}
+            onChange={(e) => setIdentification(e.target.value)}
+          />
         </div>
 
 

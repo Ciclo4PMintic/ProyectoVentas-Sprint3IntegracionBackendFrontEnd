@@ -34,22 +34,15 @@ const Header = () => {
                 </li>
               
 
-                <li className="nav-item">
-                   <Link to="/ventas"> <a className="nav-link" > Gestion Ventas</a></Link>
-                </li>
+              
                 <li className="nav-item">
                 <Link to="/user"><a className="nav-link" >Gestion Roles</a></Link>
                <ul className='dropdown'>
               
                </ul>
                 </li>
-                <li className="nav-item">
-                <Link to="/products"><a className="nav-link" >Gestion de productos</a></Link>
+                
                
-                </li>
-                <li className="nav-item">
-                <Link to ="/comprar"><a className="nav-link" >Comprar</a></Link>
-                </li>
                 </ul>
                 <ul class="navbar-nav navbar-right ">
 

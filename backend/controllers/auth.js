@@ -37,7 +37,7 @@ exports.login = async (req, res, next) => {
 
 // @desc    Register user
 exports.register = async (req, res, next) => {
-  const { username, email, password,phone,bDate,roles} = req.body;
+  const { username, email, password,phone,bDate,identification,roles, estado} = req.body;
  
     try {
    
@@ -47,17 +47,19 @@ exports.register = async (req, res, next) => {
       password,
       phone,
       bDate,
-      roles
+      identification,
+      roles,
+      estado
      
     });
     if (req.body.roles) {
       const foundRoles = await Role.find({ name: { $in: roles } });
       user.roles = foundRoles.map((role) => role._id);
     } else {
-      const role = await Role.findOne({ name: "user" });
+      const role = await Role.findOne({ name: "usuario" });
       user.roles = [role._id];
     }
-
+  req.body.estado="pendiente"
    await user.save();
    console.log(user);
     

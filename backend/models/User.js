@@ -28,12 +28,15 @@ required:[true, "Please provide a username"]
         },
 
         bDate:String,
+        identification:Number,
         roles: [
           {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Role",
           },
         ],
+         estado:String,
+
       
 
         resetPasswordToken: String,

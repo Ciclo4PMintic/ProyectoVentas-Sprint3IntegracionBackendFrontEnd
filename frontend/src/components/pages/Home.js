@@ -75,15 +75,15 @@ const Home = ({history}) => {
           </tr>
           <tr>
            
-            <td>Alejandra Fernández García</td>
-            <td>alejandrafernandezg9701@gmail.com</td>
+            <td>Juan Carlos Valderrama</td>
+            <td> juancavalde@gmail.com</td>
             
           </tr>
 
           <tr>
            
-            <td>Mauricio Herrera Palacio</td>
-            <td>mauricioherrerapalacio@gmail.com</td>
+            <td>Sebastian Barrera</td>
+            <td> kbarrerac@unal.edu.co</td>
             
           </tr>
 

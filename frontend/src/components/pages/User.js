@@ -16,13 +16,14 @@ const User = ({history}) => {
   const [phone, setPhone] = useState("");
   const [bDate, setBDate] = useState("");
   const [roles, setRoles] = useState("");
+  const [identification, setIdentification] = useState("");
 const[actID,setActID]=useState("");
 const[actUserName,setActUserName]=useState("");
 const [actEmail, setActEmail] = useState("");
 const [actPhone, setActPhone] = useState("");
 const [actBDate, setActBDate] = useState("");
 const [actRoles, setActRoles] = useState("");
-
+const [actIdentification, setActIdentification] = useState("");
   const [userData, setUserData] = useState([
     
   ]);
@@ -97,12 +98,15 @@ const actualizarUser = async (userId) => {
    var phoneAct=document.getElementById("phone2").value
    var bDateAct=document.getElementById("bDate2").value
    var rolesAct=document.getElementById("roles2").value
+   var identificationAct=document.getElementById("identification2").value
         const data= await axios.put('/api/auth/' + userId,
               { username:userNameAct,
                 email:emailAct,
                 phone:phoneAct,
                 bDate:bDateAct,
-                roles:rolesAct }
+                roles:rolesAct,
+                identification:identificationAct
+               }
       ,      
       config);
       console.log(data)
@@ -134,7 +138,7 @@ const cerrarModalEditar = () => {
 
 
 
-const tomarDato= async(idPro,proUserName,proEmail,proPhone,probDate,proRoles)=>{
+const tomarDato= async(idPro,proUserName,proEmail,proPhone,probDate,proRoles,proIdentification)=>{
     try{
           setActID(idPro);
   setActUserName(proUserName);
@@ -142,15 +146,17 @@ setActEmail(proEmail)
  setActPhone(proPhone);
 setActBDate(probDate);
   setActRoles(proRoles);
+  setActIdentification(proIdentification)
 
 console.log(idPro)
-console.log(proUserName+proEmail+proPhone+probDate+proRoles)
+console.log(proUserName+proEmail+proPhone+probDate+proRoles+proIdentification)
 
 document.getElementById("userName2").value=proUserName;
 document.getElementById("email2").value=proEmail;
 document.getElementById("phone2").value=proPhone;
 document.getElementById("bDate2").value=probDate;
 document.getElementById("roles2").value=proRoles;
+document.getElementById("identification2").value=proIdentification;
 mostrarModalEditar();
     }
     catch{
@@ -175,6 +181,7 @@ mostrarModalEditar();
                 <th>Phone</th>
                 <th>Date</th>
                 <th>Rol</th>
+                <th>Cedula</th>
                 <th></th>
                 <th></th>
                        </tr>
@@ -186,7 +193,8 @@ mostrarModalEditar();
                   <td>{pro.phone}</td>
                   <td>{pro.bDate}</td>
                   <td>{pro.roles}</td>
-                <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles)} >Actualizar</button>  </td>
+                  <td>{pro.identification}</td>
+                <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles,pro.identification)} >Actualizar</button>  </td>
                 <td><button  className="btn btn-danger" onClick={() => deleteUser(pro._id)} >Delete</button>  </td>
 
                </tr>
@@ -249,6 +257,17 @@ mostrarModalEditar();
                    onBlur={(e) => setRoles(e.target.value)}
                />
           </div>
+
+          <label htmlFor="identification">Cedula:</label>
+          <br/>
+          <div>
+          <input
+            type="number"
+               id="identification2"
+                  onBlur={(e) => setIdentification(e.target.value)}
+          />
+          </div>
+
           </form>
           <br/>
         </div>
