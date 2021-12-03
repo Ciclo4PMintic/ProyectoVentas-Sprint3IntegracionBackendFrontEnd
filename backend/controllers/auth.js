@@ -15,7 +15,7 @@ exports.login = async (req, res, next) => {
 
   try {
     // Check that user exists by email
-    const user = await User.findOne({ email }).select("+password").populate("roles");
+    const user = await User.findOne({ email }).select("+password").populate("roles","estado");
     
 
     if (!user) {
@@ -28,8 +28,12 @@ exports.login = async (req, res, next) => {
     if (!isMatch) {
       return next(new ErrorResponse("Invalid credentials", 401));
     }
+  
+    
+
 
     sendToken(user, 200, res);
+   
   } catch (err) {
     next(err);
   }
@@ -59,7 +63,7 @@ exports.register = async (req, res, next) => {
       const role = await Role.findOne({ name: "usuario" });
       user.roles = [role._id];
     }
-  req.body.estado="pendiente"
+  user.estado="pendiente"
    await user.save();
    console.log(user);
     
@@ -159,6 +163,27 @@ exports.getUsers = async (req, res) => {
   const Users = await User.find();
   return res.json(Users);
 };
+
+exports.getUserById = async (req,res,next) => {
+ const email=req.params.email;
+ console.log(email)
+  try {
+    const user = await User.findOne({email:email});
+   
+
+    if (!user) {
+      return next(new ErrorResponse("User does not exist", 404));
+    }
+
+  
+ 
+  return res.json(user);
+} catch (err) {
+  console.log(err);
+}
+};
+
+
 
 exports.updateUserById = async (req, res) => {
   try {

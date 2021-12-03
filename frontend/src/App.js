@@ -17,6 +17,7 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
+import userUpdate from"./components/pages/UserUpdate";
 const App=()=> {
   return (
     <Router>
@@ -26,10 +27,13 @@ const App=()=> {
 
  
   <UserRoute exact path="/user" component={User}/>
+  <UserRoute exact path="/userUpdate" component={userUpdate}/>
 
 <HomeRoute path="/home" component={Home} />
 
 <Route exact path="/login" component={Login}></Route>
+
+
 <Route exact path="/register" component={Register}/>
 <Route exact path="/forgotpassword" component={ForgotPassword}/>
 <Route exact path="/passwordreset/:resetToken" component={ResetPassword}/>
