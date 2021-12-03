@@ -84,7 +84,7 @@ exports.forgotPassword = async (req, res, next) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return next(new ErrorResponse("No email could not be sent", 404));
+      return next(new ErrorResponse("No email could  be sent", 404));
     }
 
     // Reset Token Gen and add to database hashed (private) version of token

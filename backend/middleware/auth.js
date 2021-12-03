@@ -69,6 +69,34 @@ console.log(roles)
   }
 };
 
+exports.isAdminorLeader= async (req, res, next) => {
+  try {
+    const user = await User.findById(id_User);
+    console.log(user)
+    const roles = await Role.find({ _id: { $in: user.roles } });
+console.log(roles)
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "lider"&& user.estado==="autorizado") {
+        next();
+        return;
+      }
+
+      
+      else if (roles[i].name === "admin"&&user.estado==="autorizado") {
+    
+      
+        next();
+        return;
+      }
+    }
+
+    return res.status(403).json({ message: "Require  Role!" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({ message: error });
+  }
+};
+
 exports.isAdmin = async (req, res, next) => {
   try {
     const user = await User.findById(id_User);
