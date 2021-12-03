@@ -1,6 +1,3 @@
-
-
-
 import '../css/main.css'
 import '../css/formatoHome.css'
 import '../plugins/fontawesome-free/css/all.min.css'
@@ -44,6 +41,14 @@ const Header = () => {
                 </li>
                 <li className="nav-item">
                 <Link to="/userUpdate"><a className="nav-link" >Actualizar Usuario</a></Link>
+               <ul className='dropdown'>
+                 
+              
+               </ul>
+                </li>
+
+                <li className="nav-item">
+                <Link to="/project"><a className="nav-link" >Gestionar Proyectos</a></Link>
                <ul className='dropdown'>
                  
               
