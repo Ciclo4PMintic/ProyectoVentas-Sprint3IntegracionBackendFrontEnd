@@ -17,6 +17,8 @@ const User = ({history}) => {
   const [bDate, setBDate] = useState("");
   const [roles, setRoles] = useState("");
   const [identification, setIdentification] = useState("");
+  const [estado, setEstado] = useState("");
+
 const[actID,setActID]=useState("");
 const[actUserName,setActUserName]=useState("");
 const [actEmail, setActEmail] = useState("");
@@ -24,6 +26,7 @@ const [actPhone, setActPhone] = useState("");
 const [actBDate, setActBDate] = useState("");
 const [actRoles, setActRoles] = useState("");
 const [actIdentification, setActIdentification] = useState("");
+const [actEstado, setActEstado] = useState("");
   const [userData, setUserData] = useState([
     
   ]);
@@ -43,7 +46,9 @@ const [actIdentification, setActIdentification] = useState("");
     setUserData(data);
       }
       catch{
-console.log(error);
+        setError("You are not authorized");
+        console.log(error);
+
       }
     };
 
@@ -61,7 +66,7 @@ console.log(error);
         updatePage()
       } catch  {
         localStorage.removeItem("authToken");
-        setError("You are not authorized please login");
+        setError("You are not authorized");
       }
     };
 
@@ -82,7 +87,7 @@ console.log(error);
 
     catch {
         localStorage.removeItem("authToken");
-        setError("You are not authorized please login");
+        setError("You are not authorized");
       }
 
     
@@ -99,13 +104,15 @@ const actualizarUser = async (userId) => {
    var bDateAct=document.getElementById("bDate2").value
    var rolesAct=document.getElementById("roles2").value
    var identificationAct=document.getElementById("identification2").value
+   var estadoAct=document.getElementById("estado2").value
         const data= await axios.put('/api/auth/' + userId,
               { username:userNameAct,
                 email:emailAct,
                 phone:phoneAct,
                 bDate:bDateAct,
                 roles:rolesAct,
-                identification:identificationAct
+                identification:identificationAct,
+                estado:estadoAct
                }
       ,      
       config);
@@ -116,7 +123,7 @@ const actualizarUser = async (userId) => {
 }
 catch {
     localStorage.removeItem("authToken");
-    setError("You are not authorized please login");
+    setError("You are not authorized ");
 }
 };
 
@@ -138,18 +145,19 @@ const cerrarModalEditar = () => {
 
 
 
-const tomarDato= async(idPro,proUserName,proEmail,proPhone,probDate,proRoles,proIdentification)=>{
+const tomarDato= async(idPro,proUserName,proEmail,proPhone,probDate,proRoles,proIdentification,proEstado)=>{
     try{
           setActID(idPro);
-  setActUserName(proUserName);
-setActEmail(proEmail)
- setActPhone(proPhone);
-setActBDate(probDate);
-  setActRoles(proRoles);
-  setActIdentification(proIdentification)
+          setActUserName(proUserName);
+          setActEmail(proEmail);
+          setActPhone(proPhone);
+          setActBDate(probDate);
+          setActRoles(proRoles);
+          setActIdentification(proIdentification);
+          setActEstado(proEstado);
 
 console.log(idPro)
-console.log(proUserName+proEmail+proPhone+probDate+proRoles+proIdentification)
+console.log(proUserName+proEmail+proPhone+probDate+proRoles+proIdentification+proEstado)
 
 document.getElementById("userName2").value=proUserName;
 document.getElementById("email2").value=proEmail;
@@ -157,10 +165,11 @@ document.getElementById("phone2").value=proPhone;
 document.getElementById("bDate2").value=probDate;
 document.getElementById("roles2").value=proRoles;
 document.getElementById("identification2").value=proIdentification;
+document.getElementById("estado2").value=proEstado;
 mostrarModalEditar();
     }
     catch{
-        console.log(error);
+      setError("You are not authorized ");
               }
 
 };
@@ -182,6 +191,7 @@ mostrarModalEditar();
                 <th>Date</th>
                 <th>Rol</th>
                 <th>Cedula</th>
+                <th>Estado</th>
                 <th></th>
                 <th></th>
                        </tr>
@@ -194,7 +204,8 @@ mostrarModalEditar();
                   <td>{pro.bDate}</td>
                   <td>{pro.roles}</td>
                   <td>{pro.identification}</td>
-                <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles,pro.identification)} >Actualizar</button>  </td>
+                  <td>{pro.estado}</td>
+                <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles,pro.identification,pro.estado)} >Actualizar</button>  </td>
                 <td><button  className="btn btn-danger" onClick={() => deleteUser(pro._id)} >Delete</button>  </td>
 
                </tr>
@@ -266,6 +277,16 @@ mostrarModalEditar();
                id="identification2"
                   onBlur={(e) => setIdentification(e.target.value)}
           />
+          </div>
+
+          <label htmlFor="estado">Estado:</label>
+          <br/>
+          <div>
+          <input
+            type="text"
+              id="estado2"
+                 onBlur={(e) => setEstado(e.target.value)}
+                />
           </div>
 
           </form>

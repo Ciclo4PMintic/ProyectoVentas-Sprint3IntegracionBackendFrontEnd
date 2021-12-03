@@ -24,6 +24,7 @@ exports.protect = async (req, res, next) => {
 
     const user = await User.findById(decoded.id);
     id_User=decoded.id
+    console.log(decoded.id)
     if (!user) {
       return next(new ErrorResponse("No user found with this id", 404));
     }
@@ -36,20 +37,32 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-exports.isModerator = async (req, res, next) => {
+
+exports.isAuthorized = async (req, res, next) => {
   try {
     const user = await User.findById(id_User);
     console.log(user)
     const roles = await Role.find({ _id: { $in: user.roles } });
 console.log(roles)
     for (let i = 0; i < roles.length; i++) {
-      if (roles[i].name === "lider") {
+      if (roles[i].name === "lider"&& user.estado==="autorizado") {
+        next();
+        return;
+      }
+
+      else  if (roles[i].name === "usuario"&& user.estado==="autorizado") {
+        next();
+        return;
+      }
+      else if (roles[i].name === "admin"&&user.estado==="autorizado") {
+    
+      
         next();
         return;
       }
     }
 
-    return res.status(403).json({ message: "Require lider Role!" });
+    return res.status(403).json({ message: "Require  Role!" });
   } catch (error) {
     console.log(error)
     return res.status(500).send({ message: error });
@@ -74,3 +87,22 @@ exports.isAdmin = async (req, res, next) => {
     return res.status(500).send({ message: error });
   }
 };
+exports.isUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(id_User);
+    const roles = await Role.find({ _id: { $in: user.roles } });
+
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "usuario"&&user.estado==="autorizado") {
+        next();
+        return;
+      }
+    }
+
+    return res.status(403).json({ message: "Require Usuario Role!" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({ message: error });
+  }
+};
+
