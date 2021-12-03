@@ -55,9 +55,9 @@ const Register = ({ history }) => {
       );
       console.log(data)
 
-      localStorage.setItem("authToken", data.token);
+     
 
-      history.push("/home");
+      history.push("/login");
     } catch {
       setError(error.response.data.error);
       setTimeout(() => {

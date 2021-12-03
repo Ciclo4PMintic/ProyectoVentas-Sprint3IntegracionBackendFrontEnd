@@ -38,6 +38,14 @@ const Header = () => {
                 <li className="nav-item">
                 <Link to="/user"><a className="nav-link" >Gestion Roles</a></Link>
                <ul className='dropdown'>
+                 
+              
+               </ul>
+                </li>
+                <li className="nav-item">
+                <Link to="/userUpdate"><a className="nav-link" >Actualizar Usuario</a></Link>
+               <ul className='dropdown'>
+                 
               
                </ul>
                 </li>
