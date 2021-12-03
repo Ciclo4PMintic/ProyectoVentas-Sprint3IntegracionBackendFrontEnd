@@ -16,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'))
 
 app.use('/api/home', require('./routes/home'))
+app.use('/api/projects',require('./routes/project'))
 
 
 ////error handler last middleware
