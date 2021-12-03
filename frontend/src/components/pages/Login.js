@@ -36,12 +36,13 @@ const Login = ({ history }) => {
       );
 
       localStorage.setItem("authToken", data.token);
-
+      sessionStorage.setItem('email',email)
       history.push("/home");
     } catch (error) {
       setError(error.response.data.error);
+      
       setTimeout(() => {
-        setError("");
+        setError("Not authorized");
       }, 5000);
     }
   };

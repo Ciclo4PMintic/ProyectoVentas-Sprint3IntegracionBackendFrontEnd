@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { getHomeRoute } = require("../controllers/home");
-const { protect } = require("../middleware/auth");
+const { protect,isAuthorized } = require("../middleware/auth");
 
 
-router.route("/").get(protect, getHomeRoute);
+
+router.route("/").get([protect,isAuthorized], getHomeRoute);
+
 module.exports = router;
