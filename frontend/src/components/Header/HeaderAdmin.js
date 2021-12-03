@@ -5,7 +5,7 @@ import "../dist/css/adminlte.min.css";
 
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const HeaderAdmin = () => {
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
   };

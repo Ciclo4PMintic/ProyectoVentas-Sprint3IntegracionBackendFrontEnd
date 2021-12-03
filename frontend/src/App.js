@@ -16,6 +16,8 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
+import Admin from "./components/pages/Admin";
+import Leader from "./components/pages/Leader";
 const App = () => {
   return (
     <Router>
@@ -33,6 +35,8 @@ const App = () => {
             path="/passwordreset/:resetToken"
             component={ResetPassword}
           />
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/leader" component={Leader} />
         </Switch>
       </div>
     </Router>

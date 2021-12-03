@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
-const Role = require("../models/Role")
+const Role = require("../models/Role");
 const sendEmail = require("../utils/sendEmail");
 
 // @desc    Login user
@@ -15,8 +15,9 @@ exports.login = async (req, res, next) => {
 
   try {
     // Check that user exists by email
-    const user = await User.findOne({ email }).select("+password").populate("roles");
-    
+    const user = await User.findOne({ email })
+      .select("+password")
+      .populate("roles");
 
     if (!user) {
       return next(new ErrorResponse("Invalid credentials", 401));
@@ -37,11 +38,19 @@ exports.login = async (req, res, next) => {
 
 // @desc    Register user
 exports.register = async (req, res, next) => {
-  const { username, email, password,phone,bDate,identification,roles, estado} = req.body;
- 
-    try {
-   
-    const user =  new User({
+  const {
+    username,
+    email,
+    password,
+    phone,
+    bDate,
+    identification,
+    roles,
+    estado,
+  } = req.body;
+
+  try {
+    const user = new User({
       username,
       email,
       password,
@@ -49,8 +58,7 @@ exports.register = async (req, res, next) => {
       bDate,
       identification,
       roles,
-      estado
-     
+      estado,
     });
     if (req.body.roles) {
       const foundRoles = await Role.find({ name: { $in: roles } });
@@ -59,11 +67,9 @@ exports.register = async (req, res, next) => {
       const role = await Role.findOne({ name: "usuario" });
       user.roles = [role._id];
     }
-  req.body.estado="pendiente"
-   await user.save();
-   console.log(user);
-    
-
+    req.body.estado = "pendiente";
+    await user.save();
+    console.log(user);
 
     sendToken(user, 200, res);
   } catch (err) {
@@ -151,7 +157,7 @@ exports.resetPassword = async (req, res, next) => {
       token: user.getSignedJwtToken(),
     });
   } catch (err) {
-   next(err); 
+    next(err);
   }
 };
 
@@ -162,39 +168,33 @@ exports.getUsers = async (req, res) => {
 
 exports.updateUserById = async (req, res) => {
   try {
-  const updatedUser = await User.findByIdAndUpdate(
-    req.params.userId,
-    req.body,
-    {
-      new: true,
-    }
-  );
-  res.status(204).json(updatedUser);
-  
-
-}catch(error){
-  console.log(error);
-  return res.status(500).json(error);
-}
-};
-
-exports.deleteUserById = async (req, res) => {
- 
-  try {
-  const { userId } = req.params;
-
-  await User.findByIdAndDelete(userId);
-
-  // code 200 is ok too
-  res.status(200).json();
-
-  }catch (error){
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.userId,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.status(204).json(updatedUser);
+  } catch (error) {
     console.log(error);
-  return res.status(500).json(error);
+    return res.status(500).json(error);
   }
 };
 
+exports.deleteUserById = async (req, res) => {
+  try {
+    const { userId } = req.params;
 
+    await User.findByIdAndDelete(userId);
+
+    // code 200 is ok too
+    res.status(200).json();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedJwtToken();
