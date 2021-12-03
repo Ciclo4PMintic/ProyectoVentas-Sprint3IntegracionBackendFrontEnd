@@ -6,13 +6,15 @@ import HomeRoute from "./components/routing/HomeRoute";
 
 import UserRoute from "./components/routing/UserRoute";
 
+import ProjectRoute from "./components/routing/ProjectRoute";
+
 
 //pages
 
 import User from "./components/pages/User";
 
 import Home from "./components/pages/Home";
-
+import Project from "./components/pages/Project";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import ForgotPassword from "./components/pages/ForgotPassword";
@@ -30,6 +32,7 @@ const App=()=> {
   <UserRoute exact path="/userUpdate" component={userUpdate}/>
 
 <HomeRoute path="/home" component={Home} />
+<ProjectRoute exact path="/project" component={Project}/>
 
 <Route exact path="/login" component={Login}></Route>
 
