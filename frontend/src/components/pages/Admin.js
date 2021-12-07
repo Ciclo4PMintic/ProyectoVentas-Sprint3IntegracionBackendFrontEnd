@@ -6,14 +6,12 @@ import "../plugins/fontawesome-free/css/all.min.css";
 import "../dist/css/adminlte.min.css";
 import HeaderAdmin from "../Header/HeaderAdmin";
 import Footer from "../Footer/Footer";
+import Home from "../pages/Home";
 
 export default function Admin() {
   return (
     <div>
       <HeaderAdmin />
-      <div>
-        <h1>Esta es la pagina de administración</h1>
-      </div>
     </div>
   );
 }
