@@ -47,3 +47,37 @@
      text-align:center;
   
   }
+
+  #tabla2{
+    width:auto;
+    text-align: left;
+  }
+  #tabla4{
+    width:auto;
+    text-align: left;
+  }
+ 
+
+  #tabla3{
+    width:auto;
+    text-align: left;
+  }
+  #tabla6{
+    width:90%;
+    text-align: left;
+  }
+
+  #tabla7{
+    width:65%;
+    text-align: left;
+  }
+
+  #tabla8{
+    width:60%;
+  }
+  #tdEspecial{
+    visibility: collapse;
+  }
+  #tabla9{
+    width:40%
+  }

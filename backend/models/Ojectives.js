@@ -1,6 +1,4 @@
 const mongoose=require('mongoose');
-
-
 const ObjectivesSchema = new mongoose.Schema(
   {
     name: String,
@@ -10,6 +8,5 @@ const ObjectivesSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-
 const Objectives= mongoose.model("Objectives", ObjectivesSchema);
 module.exports = Objectives;

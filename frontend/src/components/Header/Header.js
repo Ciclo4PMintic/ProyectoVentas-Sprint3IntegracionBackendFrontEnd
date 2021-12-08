@@ -33,25 +33,31 @@ const Header = () => {
 
               
                 <li className="nav-item">
-                <Link to="/user"><a className="nav-link" >Gestion Roles</a></Link>
+                <a className="nav-link" >Admin</a>
                <ul className='dropdown'>
-                 
-              
+               <Link to="/user"><a className="nav-link" >Gestion Roles</a></Link>
+               <Link to="/project"><a className="nav-link" >Gestionar Proyectos</a></Link>
                </ul>
                 </li>
                 <li className="nav-item">
-                <Link to="/userUpdate"><a className="nav-link" >Actualizar Usuario</a></Link>
+                <a className="nav-link" >Estudiante</a>
                <ul className='dropdown'>
-                 
-              
+               <Link to="/userUpdate"><a className="nav-link" >Actualizar Datos</a></Link>
+               <Link to="/projectList"><a className="nav-link" >Inscripcion Proyectos</a></Link>
+               <Link to="/studentProjects"><a className="nav-link" >Mis Proyectos</a></Link>
+
                </ul>
                 </li>
 
+                
+
                 <li className="nav-item">
-                <Link to="/project"><a className="nav-link" >Gestionar Proyectos</a></Link>
+                <a className="nav-link" >Lider</a>
                <ul className='dropdown'>
-                 
-              
+               <Link to="/projectUpdate"><a className="nav-link" >Mis Proyectos</a></Link>
+               <Link to="/userUpdate"><a className="nav-link" >Actualizar Datos</a></Link>
+               <Link to="/studentList"><a className="nav-link" >Ingreso Estudiantes</a></Link>
+               <Link to="/inscriptionProject"><a className="nav-link" >Gestionar Inscripciones</a></Link>
                </ul>
                 </li>
                 
