@@ -1,6 +1,6 @@
 const Project=require('../models/Project');
 const User=require('../models/User')
-
+const ErrorResponse = require("../utils/errorResponse");
 exports.createProject = async (req, res) => {
   const {  leader,
     projectName,
@@ -9,7 +9,8 @@ exports.createProject = async (req, res) => {
     startDate,
     endDate,
     estado,    
-    phase, } = req.body;
+    phase,
+    autorizacion } = req.body;
 
   try {
     const newProject = new Project({
@@ -21,10 +22,14 @@ exports.createProject = async (req, res) => {
         endDate,
         estado,    
         phase,
+        autorizacion
     });
     if (req.body.leader) {
         const foundleader = await User.find({ email: { $in: leader } });
         newProject.leader = foundleader.map((user) => user._id);
+        newProject.autorizacion="Pendiente";
+        newProject.estado="inactivo";
+        newProject.phase="En desarrollo";
       } else {
         return next(new ErrorResponse("User does not exist", 404));
       }
@@ -38,11 +43,16 @@ exports.createProject = async (req, res) => {
   }
 };
 
-exports.getProjectById = async (req, res) => {
-  try{
-  const { projectId } = req.params;
+exports.getProjectByLeader = async (req, res) => {
+  const idUser = req.params.leader;
+  console.log("este es el usuario"+idUser)
 
-  const project = await Project.findById(projectId);
+  try{
+ 
+  const user = await User.findOne({email:idUser});
+console.log(user)
+   const project = await Project.find({leader:user});
+   console.log(project)
   res.status(200).json(project);
   }
   catch
@@ -54,7 +64,7 @@ exports.getProjectById = async (req, res) => {
 
 exports.getProjects = async (req, res) => {
   try{
-  const projects= await Project.find();
+  const projects= await Project.find().populate("leader");
   return res.json(projects);
   }
   catch(error) {
@@ -63,19 +73,36 @@ exports.getProjects = async (req, res) => {
   }
 };
 
-exports.updateProjectById = async (req, res) => {
+exports.getListProjectsStudents = async (req, res) => {
   try{
-  const updatedProject = await Project.findByIdAndUpdate(
-    req.params.projectId,
-    req.body,
-    {
-      new: true,
-    }
-  );
-  res.status(204).json(updatedProject);
+  const projects= await Project.find().populate("leader");
+  return res.json(projects);
+  }
+  catch(error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
+
+
+
+exports.updateProjectById = async (req, res,next) => {
+try{
+
+ const updatedProject = await Project.findByIdAndUpdate(
+  req.params.projectId,
+  req.body,
+  {
+    new: true,
+  }
+);
+res.status(204).json(updatedProject);
+  
+
+
   } catch(error) {
     console.log(error);
-
+    
   }
 
 };

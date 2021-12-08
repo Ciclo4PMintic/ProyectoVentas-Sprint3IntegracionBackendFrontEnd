@@ -12,7 +12,6 @@ import Footer from "../Footer/Footer";
 const UserUpdate = ({history}) => {
   const [error, setError] = useState("");
   const [username, setUserName] = useState("");
-  const [emailGuardado, setEmailGuardado] = useState("");
   const [email, setEmail] = useState("");
  
   const [phone, setPhone] = useState("");
@@ -90,7 +89,7 @@ if (response) {
  var emailAct=document.getElementById("email2").value
  var phoneAct=document.getElementById("phone2").value
  var bDateAct=document.getElementById("bDate2").value
- var rolesAct=document.getElementById("roles2").value
+ 
  var identificationAct=document.getElementById("identification2").value
 
       const data= await axios.put('/api/auth/' + userId,
@@ -98,7 +97,7 @@ if (response) {
               email:emailAct,
               phone:phoneAct,
               bDate:bDateAct,
-              roles:rolesAct,
+             
               identification:identificationAct,
            
              }
@@ -131,25 +130,25 @@ const cerrarModalEditar = () => {
 
 
 
-const tomarDato= async(idPro,proUserName,proEmail,proPhone,probDate,proRoles,proIdentification,proEstado)=>{
+const tomarDato= async(idPro,proUserName,proEmail,proPhone,probDate,proIdentification,proEstado)=>{
     try{
           setActID(idPro);
           setActUserName(proUserName);
           setActEmail(proEmail);
           setActPhone(proPhone);
           setActBDate(probDate);
-          setActRoles(proRoles);
+        
           setActIdentification(proIdentification);
           
 
 console.log(idPro)
-console.log(proUserName+proEmail+proPhone+probDate+proRoles+proIdentification+proEstado)
+console.log(proUserName+proEmail+proPhone+probDate+proIdentification+proEstado)
 
 document.getElementById("userName2").value=proUserName;
 document.getElementById("email2").value=proEmail;
 document.getElementById("phone2").value=proPhone;
 document.getElementById("bDate2").value=probDate;
-document.getElementById("roles2").value=proRoles;
+
 document.getElementById("identification2").value=proIdentification;
 
 mostrarModalEditar();
@@ -167,7 +166,7 @@ return error ? (
      <div>
          <Header/>
          <div id="titlepro">
-         <h1>Lista Usuarios</h1>
+         <h1>Datos personales</h1>
          </div>
             <div className="productos">
            <table  >
@@ -176,7 +175,7 @@ return error ? (
               <th>Email</th>
               <th>Phone</th>
               <th>Date</th>
-              <th>Rol</th>
+             
               <th>Cedula</th>
               
               <th></th>
@@ -189,10 +188,10 @@ return error ? (
                 <td>{pro.email}</td>
                 <td>{pro.phone}</td>
                 <td>{pro.bDate}</td>
-                <td>{pro.roles}</td>
+                
                 <td>{pro.identification}</td>
                
-              <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles,pro.identification)} >Actualizar</button>  </td>
+              <td><button  className="btn btn-primary" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.identification)} >Actualizar</button>  </td>
 
              </tr>
             ))}
@@ -205,7 +204,7 @@ return error ? (
 <div id="editar" class="modal" >
 <div class="modal-content">
 <div className="form-group">
-<div><h1>Actualizar User</h1></div>
+<div><h1>Actualizar datos</h1></div>
 <form>    
         <label htmlFor="username">Username:</label>
         <br/>
@@ -245,15 +244,7 @@ return error ? (
                 onBlur={(e) => setBDate(e.target.value)}
          />
         </div>
-        <label htmlFor="roles">Rol:</label>
-        <br/>
-        <div>
-        <input
-          type="text"
-             id="roles2"
-                 onBlur={(e) => setRoles(e.target.value)}
-             />
-        </div>
+       
 
         <label htmlFor="identification">Cedula:</label>
         <br/>

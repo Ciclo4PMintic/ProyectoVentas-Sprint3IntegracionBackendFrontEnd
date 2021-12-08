@@ -80,9 +80,9 @@ const [actEstado, setActEstado] = useState("");
 
          axios.delete('/api/auth/' + userId,config);
         
-        
+         updatePage(); 
     }
-    updatePage();
+  
 }
 
     catch {
@@ -102,7 +102,7 @@ const actualizarUser = async (userId) => {
    var emailAct=document.getElementById("email2").value
    var phoneAct=document.getElementById("phone2").value
    var bDateAct=document.getElementById("bDate2").value
-   var rolesAct=document.getElementById("roles2").value
+ 
    var identificationAct=document.getElementById("identification2").value
    var estadoAct=document.getElementById("estado2").value
         const data= await axios.put('/api/auth/' + userId,
@@ -110,7 +110,7 @@ const actualizarUser = async (userId) => {
                 email:emailAct,
                 phone:phoneAct,
                 bDate:bDateAct,
-                roles:rolesAct,
+                
                 identification:identificationAct,
                 estado:estadoAct
                }
@@ -163,7 +163,7 @@ document.getElementById("userName2").value=proUserName;
 document.getElementById("email2").value=proEmail;
 document.getElementById("phone2").value=proPhone;
 document.getElementById("bDate2").value=probDate;
-document.getElementById("roles2").value=proRoles;
+
 document.getElementById("identification2").value=proIdentification;
 document.getElementById("estado2").value=proEstado;
 mostrarModalEditar();
@@ -202,10 +202,11 @@ mostrarModalEditar();
                   <td>{pro.email}</td>
                   <td>{pro.phone}</td>
                   <td>{pro.bDate}</td>
-                  <td>{pro.roles}</td>
+                  <td >{pro.roles.map((retro)=>( <tr value={retro._id} key={retro._id}> 
+                  <td>{retro.name}</td> </tr>)) }</td>
                   <td>{pro.identification}</td>
                   <td>{pro.estado}</td>
-                <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles,pro.identification,pro.estado)} >Actualizar</button>  </td>
+                <td><button  className="btn btn-primary" onClick={()=>tomarDato(pro._id,pro.username,pro.email,pro.phone,pro.bDate,pro.roles,pro.identification,pro.estado)} >Actualizar</button>  </td>
                 <td><button  className="btn btn-danger" onClick={() => deleteUser(pro._id)} >Delete</button>  </td>
 
                </tr>
@@ -219,7 +220,7 @@ mostrarModalEditar();
 <div id="editar" class="modal" >
  <div class="modal-content">
   <div className="form-group">
-  <div><h1>Actualizar User</h1></div>
+  <div><h1>Actualizar Usuario</h1></div>
   <form>    
           <label htmlFor="username">Username:</label>
           <br/>
@@ -259,15 +260,7 @@ mostrarModalEditar();
                   onBlur={(e) => setBDate(e.target.value)}
            />
           </div>
-          <label htmlFor="roles">Rol:</label>
-          <br/>
-          <div>
-          <input
-            type="text"
-               id="roles2"
-                   onBlur={(e) => setRoles(e.target.value)}
-               />
-          </div>
+         
 
           <label htmlFor="identification">Cedula:</label>
           <br/>
