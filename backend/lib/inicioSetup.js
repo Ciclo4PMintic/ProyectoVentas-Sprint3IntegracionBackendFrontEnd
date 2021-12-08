@@ -1,4 +1,3 @@
-
 const Role = require("../models/Role");
 
  const createRoles = async () => {
@@ -21,7 +20,4 @@ const Role = require("../models/Role");
     console.error(error);
   }
 };
-
-
-  
 module.exports = createRoles;

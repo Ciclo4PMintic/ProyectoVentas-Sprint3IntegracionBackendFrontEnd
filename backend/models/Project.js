@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-
 const ProjectSchema = new mongoose.Schema(
   {
     leader: [
@@ -9,20 +8,18 @@ const ProjectSchema = new mongoose.Schema(
         },
       ],
     projectName: String,
-    Objective:Object,
+    Objective:String,
     budget:Number,
-    
     startDate: String,
     endDate: String,
     estado:String,
-
     phase:String,
+    autorizacion:String
   },
   {
     timestamps: true,
     versionKey: false
   }
 );
-
  const Project= mongoose.model("Project", ProjectSchema);
  module.exports = Project;

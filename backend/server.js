@@ -17,7 +17,8 @@ app.use('/api/auth', require('./routes/auth'))
 
 app.use('/api/home', require('./routes/home'))
 app.use('/api/projects',require('./routes/project'))
-
+app.use('/api/inscription', require('./routes/inscription'))
+app.use('/api/advance', require('./routes/advance'))
 
 ////error handler last middleware
 app.use(errorHandler)

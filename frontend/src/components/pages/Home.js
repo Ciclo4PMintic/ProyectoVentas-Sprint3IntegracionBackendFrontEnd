@@ -43,9 +43,9 @@ const Home = ({history}) => {
   
 
     <div class="container">
-    <h1 class='tituloHome'>Equipo 4</h1>
+    <h1 class='tituloHome'>Equipo Enigma</h1>
 
-<h2 >Proyecto Ventas</h2>
+<h2 >Proyecto Web: Gestion proyectos</h2>
 
 <h3> Integrantes del grupo</h3>
 
