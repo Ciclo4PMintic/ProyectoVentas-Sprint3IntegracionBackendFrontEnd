@@ -90,7 +90,7 @@ console.log(roles)
       }
     }
 
-    return res.status(403).json({ message: "Require  Role!" });
+    return res.status(403).json({ message: "Require uaer or admin Role!" });
   } catch (error) {
     console.log(error)
     return res.status(500).send({ message: error });
@@ -134,3 +134,49 @@ exports.isUser = async (req, res, next) => {
   }
 };
 
+exports.isLeader = async (req, res, next) => {
+  try {
+    const user = await User.findById(id_User);
+    const roles = await Role.find({ _id: { $in: user.roles } });
+
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "lider") {
+        next();
+        return;
+      }
+    }
+
+    return res.status(403).json({ message: "Require Lider Role!" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({ message: error });
+  }
+};
+
+exports.isUserorLeader= async (req, res, next) => {
+  try {
+    const user = await User.findById(id_User);
+    console.log(user)
+    const roles = await Role.find({ _id: { $in: user.roles } });
+console.log(roles)
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "usuario"&& user.estado==="autorizado") {
+        next();
+        return;
+      }
+
+      
+      else if (roles[i].name === "lider"&&user.estado==="autorizado") {
+    
+      
+        next();
+        return;
+      }
+    }
+
+    return res.status(403).json({ message: "Require user or admin Role !" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({ message: error });
+  }
+};

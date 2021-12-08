@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer";
 
 
 
+
 const Project = ({history}) => {
 
     //llamar dato
@@ -22,7 +23,7 @@ const Project = ({history}) => {
   const [endDate, setEndDate] = useState("");
   const [estado, setEstado] = useState("");
   const [phase, setPhase] = useState("");
-  
+  const[autorizacion,setAutorizacion]=useState("");
 
 const[actID,setActID]=useState("");
 const [actLeader, setActLeader] = useState("");
@@ -32,7 +33,8 @@ const [actLeader, setActLeader] = useState("");
   const [ actStartDate, setActStartDate] = useState("");
   const [actEndDate, setActEndDate] = useState("");
   const [actEstado, setActEstado] = useState("");
-  const [actphase, setActPhase] = useState("");
+  const [actPhase, setActPhase] = useState("");
+  const[actAutorizacion, setActAutorizacion]=useState("");
 
 
 
@@ -72,12 +74,13 @@ const z=sessionStorage.getItem("email");
         "/api/projects",
         { leader:z,
             projectName,
-            objective,
+            
             budget,
             startDate,
             endDate,
             estado,    
-            phase },
+            phase,
+          autorizacion },
         config
       );
    
@@ -133,13 +136,15 @@ const actualizarProyecto = async (proyectosId) => {
   const response = window.confirm('are you sure you want to update it?');
   if (response) {
    var projectNameAct=document.getElementById("projectName2").value
-   
    var objectiveAct=document.getElementById("objective2").value
    var budgetAct=document.getElementById("budget2").value
+   var estadoAct=document.getElementById("estado2").value
    var startDateAct=document.getElementById("startDate2").value
    var endDateAct=document.getElementById("endDate2").value
-   var estadoAct=document.getElementById("estado2").value
+   
    var phaseAct=document.getElementById("phase2").value
+   var autorizacionAct=document.getElementById("autorizacion2").value
+  
   
 
    
@@ -148,19 +153,14 @@ const actualizarProyecto = async (proyectosId) => {
 
               { 
                 projectName:projectNameAct,
-            objective:objectiveAct,
-            budget:budgetAct,
-            startDate:startDateAct,
-            endDate:endDateAct,
-            estado:estadoAct,    
-            phase:phaseAct 
-              
-            
-            }
-      ,
-      
-      
-      config);
+                objective:objectiveAct,
+                budget:budgetAct,
+                estado:estadoAct, 
+                startDate:startDateAct,
+                endDate:endDateAct,
+                phase:phaseAct,
+                autorizacion:autorizacionAct
+              },config);
 
       console.log(data)
       cerrarModalEditar();
@@ -177,26 +177,33 @@ catch{
 
 
 
-const tomarDato= async(idProj,proProjectName,proObjective,proBudget,proStartDate,proEndDate,proEstado,proPhase)=>{
+const tomarDato= async(idProj,proLeader,proProjectName,proObjective,proBudget,proEstado,proStartDate,proEndDate,proPhase, proAutorizacion)=>{
+  
+  console.log(idProj,proLeader,proProjectName,proObjective,proBudget,proStartDate,proEndDate,proEstado,proPhase)
   setActID(idProj);
+  setActLeader(proLeader)
   setActProjectName(proProjectName);
   setActObjective(proObjective);
   setActBudget(proBudget);
+  setActEstado(proEstado);
+  console.log(proEstado)
   setActStartDate(proStartDate);
   setActEndDate(proEndDate);
-  setActEstado(proEstado);
   setActPhase(proPhase);
+  setActAutorizacion(proAutorizacion);
 
 console.log(idProj)
 
 document.getElementById("projectName2").value=proProjectName
-   
-  document.getElementById("objective2").value=proObjective
-  document.getElementById("budget2").value=proBudget
- document.getElementById("startDate2").value=proStartDate
-   document.getElementById("endDate2").value=proEndDate
-   document.getElementById("estado2").value=proEstado
-  document.getElementById("phase2").value=proPhase
+document.getElementById("budget2").value=proBudget
+document.getElementById("objective2").value=proObjective
+document.getElementById("startDate2").value=proStartDate
+console.log(proEstado)
+document.getElementById("estado2").value=proEstado
+
+document.getElementById("endDate2").value=proEndDate
+document.getElementById("phase2").value=proPhase
+document.getElementById("autorizacion2").value=proAutorizacion
 
 
 mostrarModalEditar();
@@ -263,6 +270,7 @@ mostrarModalEditar();
                 <th>Fecha Inicio</th>
                 <th>Fecha de terminacion</th>
                 <th>Fase</th>
+                <th>Autorizacion</th>
                
                 <th></th>
                 <th></th>
@@ -270,16 +278,24 @@ mostrarModalEditar();
                 <tbody>
               {projectData.map((pro ) => (
                 <tr  value={pro._id} key={pro._id}>
-                  <td>{pro.leader}</td>
+
+
+
+                  <td>{pro.leader.map((retro)=>(<tr value={retro._id} key={retro.id}>
+                    <td>{retro.username}</td>
+                  </tr>))}</td>
                   <td>{pro.projectName}</td>
                   <td>{pro.objective}</td>
                   <td>{pro.budget}</td>
+               
                   <td>{pro.estado}</td>
+                  {console.log(pro.estado)}
                   <td>{pro.startDate}</td>
                   <td>{pro.endDate}</td>
                   <td>{pro.phase}</td>
+                  <td>{pro.autorizacion}</td>
               
-                  <td><button  className="btn btn-success" onClick={()=>tomarDato(pro._id,pro.leader,pro.projectName,pro.objective,pro.budget,pro.estado,pro.startDate,pro.endDate,pro.phase)} >Actualizar</button>  </td>
+                  <td><button  className="btn btn-primary" onClick={()=>tomarDato(pro._id,pro.leader,pro.projectName,pro.objective,pro.budget,pro.estado,pro.startDate,pro.endDate,pro.phase,pro.autorizacion)} >Actualizar</button>  </td>
                 <td><button  className="btn btn-danger" onClick={() => deleteProyecto(pro._id)} >Delete</button>  </td>
 
                 
@@ -312,6 +328,7 @@ mostrarModalEditar();
            
           />
           </div>
+        
 
           <label htmlFor="budget">Presupuesto:</label>
           <br/>
@@ -424,7 +441,19 @@ mostrarModalEditar();
           
             id="projectName2"
            
-            onChange={(e) => setProjectName(e.target.value)}
+            onBlur={(e) => setProjectName(e.target.value)}
+           
+          />
+          </div>
+          <label htmlFor="objective">Objetivos:</label>
+          <br/>
+          <div>
+          <input
+            type="text"
+          
+            id="objective2"
+           
+            onBlur={(e) => setObjective(e.target.value)}
            
           />
           </div>
@@ -437,24 +466,28 @@ mostrarModalEditar();
           
             id="budget2"
            
-             onChange={(e) => setBudget(e.target.value)}
+            onBlur={(e) => setBudget(e.target.value)}
             
           
           />
 
          </div>
 
+
          <label htmlFor="estado">Estado:</label>
-<br/>
-<div>
+        <br/>
+        <div>
 <input
   type="text"
 
   id="estado2"
  
-   onChange={(e) => setEstado(e.target.value)}
+  onBlur={(e) => setEstado(e.target.value)}
   />
             </div>
+
+
+
   
           <label htmlFor="startDate">Fecha de inicio:</label>
           <br/>
@@ -464,13 +497,13 @@ mostrarModalEditar();
 
           min="2018-01-01" max="2050-12-31"
                       id="startDate2"
-                       onChange={(e) => setStartDate(e.target.value)}
+                      onBlur={(e) => setStartDate(e.target.value)}
                       
                        
                      />
                   </div>
 
-                  <label htmlFor="endDate">Fecha de terminacion:</label>
+          <label htmlFor="endDate">Fecha de terminacion:</label>
           <br/>
           <div>
           <input
@@ -478,7 +511,7 @@ mostrarModalEditar();
 
           min="2018-01-01" max="2050-12-31"
                       id="endDate2"
-                       onChange={(e) => setEndDate(e.target.value)}
+                      onBlur={(e) => setEndDate(e.target.value)}
                       
                        
                      />
@@ -492,11 +525,26 @@ mostrarModalEditar();
           
             id="phase2"
            
-            onChange={(e) => setPhase(e.target.value)}
+            onBlur={(e) => setPhase(e.target.value)}
            
           />
           </div>
           <br/>
+
+          <label htmlFor="autorizacion">Autorizacion:</label>
+          <br/>
+          <div>
+          <input
+            type="text"
+          
+            id="autorizacion2"
+           
+            onBlur={(e) => setAutorizacion(e.target.value)}
+           
+          />
+          </div>
+          <br/>
+
           <div>
         <button  className="btn btn-success" onClick={() => actualizarProyecto(actID)}  >Actualizar</button>
 

@@ -1,10 +1,11 @@
 const express=require('express');
 const router = express.Router();
-const { createProject,getProjectById,getProjects,updateProjectById,deleteProjectById } = require('../controllers/project')
-const { protect, isAdminorLeader } = require("../middleware/auth");
+const { createProject,getProjectByLeader,getProjects,updateProjectById,deleteProjectById,getListProjectsStudents } = require('../controllers/project')
+const { protect, isAdminorLeader, isLeader, isAdmin,  isUser} = require("../middleware/auth");
 
-router.route("/").get( [protect, isAdminorLeader],getProjects );
-router.route("/:projectId").get([protect, isAdminorLeader],getProjectById);
+router.route("/").get( [protect,isAdmin],getProjects );
+router.route("/listProjects").get( [protect,isUser],getListProjectsStudents );
+router.route("/:leader").get([protect, isLeader],getProjectByLeader);
 
 router.route("/").post([protect,isAdminorLeader], createProject);
 

@@ -7,34 +7,23 @@ const sendEmail = require("../utils/sendEmail");
 // @desc    Login user
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
-
   // Check if email and password is provided
   if (!email || !password) {
     return next(new ErrorResponse("Please provide an email and password", 400));
   }
-
   try {
     // Check that user exists by email
     const user = await User.findOne({ email }).select("+password").populate("roles","estado");
-    
-
-    if (!user) {
+      if (!user) {
       return next(new ErrorResponse("Invalid credentials", 401));
     }
-
     // Check that password match
     const isMatch = await user.matchPassword(password);
-
     if (!isMatch) {
       return next(new ErrorResponse("Invalid credentials", 401));
     }
-  
-    
-
-
-    sendToken(user, 200, res);
-   
-  } catch (err) {
+      sendToken(user, 200, res);
+     } catch (err) {
     next(err);
   }
 };
@@ -42,10 +31,8 @@ exports.login = async (req, res, next) => {
 // @desc    Register user
 exports.register = async (req, res, next) => {
   const { username, email, password,phone,bDate,identification,roles, estado} = req.body;
- 
-    try {
-   
-    const user =  new User({
+     try {
+       const user =  new User({
       username,
       email,
       password,
@@ -65,11 +52,8 @@ exports.register = async (req, res, next) => {
     }
   user.estado="pendiente"
    await user.save();
-   console.log(user);
-    
-
-
-    sendToken(user, 200, res);
+   console.log("el usuario"+user);
+   sendToken(user, 200, res);
   } catch (err) {
     next(err);
   }
@@ -160,11 +144,11 @@ exports.resetPassword = async (req, res, next) => {
 };
 
 exports.getUsers = async (req, res) => {
-  const Users = await User.find();
+  const Users = await User.find().populate("roles");
   return res.json(Users);
 };
 
-exports.getUserById = async (req,res,next) => {
+exports.getUserByEmail = async (req,res,next) => {
  const email=req.params.email;
  console.log(email)
   try {
@@ -174,6 +158,8 @@ exports.getUserById = async (req,res,next) => {
     if (!user) {
       return next(new ErrorResponse("User does not exist", 404));
     }
+
+    
 
   
  
@@ -218,6 +204,26 @@ exports.deleteUserById = async (req, res) => {
   return res.status(500).json(error);
   }
 };
+
+exports.getUserStudent = async (req, res) => {
+ 
+
+  try{
+ 
+  
+   const user = await User.find({roles:"61a81fd6b9cf119441c6a95a"});
+   console.log(user)
+  res.status(200).json(user);
+  }
+  catch
+  (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
+
+
+ 
 
 
 
