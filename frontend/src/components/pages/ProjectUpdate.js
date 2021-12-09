@@ -590,7 +590,6 @@ return error ? (
 <button className="btn btn-danger"  onClick={cerrarModalEditar}>cancelar</button>
 </div>
 
-        <hr id="separador"></hr>
         
         
 

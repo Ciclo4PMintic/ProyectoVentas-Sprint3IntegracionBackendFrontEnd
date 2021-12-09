@@ -182,7 +182,7 @@ const Register = ({ history }) => {
         <div>
         <label htmlFor="roles">Roles:</label>
         <div>
-        <select id="list" onChange={readValue} >
+        <select id="list" className="list" onChange={readValue} >
        
         <option value="none">none</option>
             <option value="admin">admin</option>
