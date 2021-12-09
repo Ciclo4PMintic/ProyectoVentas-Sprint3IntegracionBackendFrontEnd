@@ -495,16 +495,7 @@ return error ? (
 
        </div>
 
-     
-
-        
-
-                
-
-       
-
-
-           <br/>
+                <br/>
         <div>
           <div>
       <button type="submit" className="btn btn-success" onClick={insertarAvance} >crear</button>
@@ -515,7 +506,6 @@ return error ? (
        </div>
 </div>
 
-        <hr id="separador"></hr>
         
 
 
