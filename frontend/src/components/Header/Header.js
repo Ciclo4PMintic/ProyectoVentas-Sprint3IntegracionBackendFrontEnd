@@ -35,7 +35,7 @@ const Header = () => {
                 <li className="nav-item">
                 <a className="nav-link" >Admin</a>
                <ul className='dropdown'>
-               <Link to="/user"><a className="nav-link" >Gestion Roles</a></Link>
+               <Link to="/user"><a className="nav-link" >Gestion Usuarios</a></Link>
                <Link to="/project"><a className="nav-link" >Gestionar Proyectos</a></Link>
                </ul>
                 </li>

@@ -104,7 +104,7 @@ const actualizarUser = async (userId) => {
    var bDateAct=document.getElementById("bDate2").value
  
    var identificationAct=document.getElementById("identification2").value
-   var estadoAct=document.getElementById("estado2").value
+   var estadoAct=document.getElementById("list").value
         const data= await axios.put('/api/auth/' + userId,
               { username:userNameAct,
                 email:emailAct,
@@ -165,7 +165,7 @@ document.getElementById("phone2").value=proPhone;
 document.getElementById("bDate2").value=probDate;
 
 document.getElementById("identification2").value=proIdentification;
-document.getElementById("estado2").value=proEstado;
+document.getElementById("list").value=proEstado;
 mostrarModalEditar();
     }
     catch{
@@ -173,6 +173,12 @@ mostrarModalEditar();
               }
 
 };
+
+
+
+
+
+
   
   return error ? (
     <span className="error-message">{error}</span>
@@ -272,15 +278,25 @@ mostrarModalEditar();
           />
           </div>
 
-          <label htmlFor="estado">Estado:</label>
-          <br/>
+         
+
           <div>
-          <input
-            type="text"
-              id="estado2"
-                 onBlur={(e) => setEstado(e.target.value)}
-                />
-          </div>
+        <label htmlFor="estado">Estado:</label>
+        <div>
+        <select id="list" className="list" onChange={(e) => setEstado(e.target.value)} >
+       
+        <option value="none">none</option>
+            <option value="autorizado">Autorizado</option>
+            <option value="no autorizado">No autorizado</option>
+           
+
+           
+        </select>
+        </div>
+        </div>
+
+
+          
 
           </form>
           <br/>

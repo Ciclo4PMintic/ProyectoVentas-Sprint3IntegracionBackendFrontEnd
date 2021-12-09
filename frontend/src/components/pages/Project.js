@@ -410,10 +410,6 @@ mostrarModalEditar();
          </div>
   </div>
 
-          <hr id="separador"></hr>
-          
-
-
           <br/>
         </div>
         
@@ -477,13 +473,16 @@ mostrarModalEditar();
          <label htmlFor="estado">Estado:</label>
         <br/>
         <div>
-<input
-  type="text"
+        <select id="estado2" className="list" onChange={(e) => setEstado(e.target.value)} >
+       
+       <option value="none">none</option>
+           <option value="activo">Activo</option>
+           <option value="inactivo">Inactivo</option>
+          
 
-  id="estado2"
- 
-  onBlur={(e) => setEstado(e.target.value)}
-  />
+          
+       </select>
+
             </div>
 
 
@@ -519,29 +518,36 @@ mostrarModalEditar();
 
           <label htmlFor="phase">Fase del proyecto:</label>
           <br/>
-          <div>
-          <input
-            type="text"
+      
+        <div>
+        <select id="phase2" className="list" onChange={(e) => setPhase(e.target.value)} >
+       
+        <option value="none">none</option>
+            <option value="En desarrollo">En desarrollo</option>
+            <option value="Terminado">Terminado</option>
+           
+
+           
+        </select>
+        </div>
           
-            id="phase2"
-           
-            onBlur={(e) => setPhase(e.target.value)}
-           
-          />
-          </div>
           <br/>
 
           <label htmlFor="autorizacion">Autorizacion:</label>
           <br/>
           <div>
-          <input
-            type="text"
+
+          <select id="autorizacion2" className="list" onChange={(e) => setAutorizacion(e.target.value)} >
+       
+       <option value="none">none</option>
+           <option value="Aprobado">Aprobado</option>
+           <option value="Rechazado">Rechazado</option>
           
-            id="autorizacion2"
-           
-            onBlur={(e) => setAutorizacion(e.target.value)}
-           
-          />
+
+          
+       </select>
+
+         
           </div>
           <br/>
 
@@ -553,12 +559,6 @@ mostrarModalEditar();
         <div>
   <button className="btn btn-danger"  onClick={cerrarModalEditar}>cancelar</button>
   </div>
-
-          <hr id="separador"></hr>
-          
-          
-
-
           </form>
           <br/>
         </div>
