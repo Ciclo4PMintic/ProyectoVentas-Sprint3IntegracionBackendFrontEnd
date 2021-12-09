@@ -29,7 +29,7 @@ exports.createProject = async (req, res) => {
         newProject.leader = foundleader.map((user) => user._id);
         newProject.autorizacion="Pendiente";
         newProject.estado="inactivo";
-        newProject.phase="En desarrollo";
+        newProject.phase="Pendiente";
       } else {
         return next(new ErrorResponse("User does not exist", 404));
       }
