@@ -25,27 +25,27 @@ const Header = () => {
             <ul className="navbar-nav mr-auto">
 
             <li className="nav-item">
-                <Link to="/home">    <a id="axis"className="nav-link" >CoroTTo <span className="sr-only">(current)</span></a></Link>
+                <a id="axis"className="nav-link" href='/home' >CoroTTo <span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                <Link to="/home">    <a className="nav-link" >Home <span className="sr-only">(current)</span></a></Link>
+                   <a className="nav-link" href='/home'>Home <span className="sr-only">(current)</span></a>
                 </li>
               
 
               
                 <li className="nav-item">
-                <a className="nav-link" >Admin</a>
+                <a className="nav-link" href='/home' >Admin</a>
                <ul className='dropdown'>
-               <Link to="/user"><a className="nav-link" >Gestion Usuarios</a></Link>
-               <Link to="/project"><a className="nav-link" >Gestionar Proyectos</a></Link>
+              <a className="nav-link" href='/user' >Gestion Usuarios</a>
+              <a className="nav-link"href='/project' >Gestionar Proyectos</a>
                </ul>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" >Estudiante</a>
+                <a className="nav-link" href='/home' >Estudiante</a>
                <ul className='dropdown'>
-               <Link to="/userUpdate"><a className="nav-link" >Actualizar Datos</a></Link>
-               <Link to="/projectList"><a className="nav-link" >Inscripcion Proyectos</a></Link>
-               <Link to="/studentProjects"><a className="nav-link" >Mis Proyectos</a></Link>
+             <a className="nav-link" href="/userUpdate" >Actualizar Datos</a>
+               <a className="nav-link" href="/projectList" >Inscripcion Proyectos</a>
+               <a className="nav-link" href="/studentProjects" >Mis Proyectos</a>
 
                </ul>
                 </li>
@@ -53,12 +53,12 @@ const Header = () => {
                 
 
                 <li className="nav-item">
-                <a className="nav-link" >Lider</a>
+                <a className="nav-link" href='/home'>Lider</a>
                <ul className='dropdown'>
-               <Link to="/projectUpdate"><a className="nav-link" >Mis Proyectos</a></Link>
-               <Link to="/userUpdate"><a className="nav-link" >Actualizar Datos</a></Link>
-               <Link to="/studentList"><a className="nav-link" >Ingreso Estudiantes</a></Link>
-               <Link to="/inscriptionProject"><a className="nav-link" >Gestionar Inscripciones</a></Link>
+              <a className="nav-link" href="/projectUpdate" >Mis Proyectos</a>
+               <a className="nav-link" href="/userUpdate" >Actualizar Datos</a>
+              <a className="nav-link" href="/studentList" >Ingreso Estudiantes</a>
+              <a className="nav-link" href="/inscriptionProject" >Gestionar Inscripciones</a>
                </ul>
                 </li>
                 
@@ -66,11 +66,11 @@ const Header = () => {
                 </ul>
                 <ul class="navbar-nav navbar-right ">
                 <li className="nav">
-                <Link to="/userUpdate"><a className="nav-link">{sessionStorage.getItem("email")}</a></Link>
+            <a className="nav-link" href='/userUpdate'>{sessionStorage.getItem("email")}</a>
                 </li>
 
                 <li className="nav">
-                <Link to="/login"><a id="logout" className="nav-link" onClick={logoutHandler}>Logout</a></Link>
+               <a id="logout" className="nav-link" href='/login' onClick={logoutHandler}>Logout</a>
                 </li>
                
             
