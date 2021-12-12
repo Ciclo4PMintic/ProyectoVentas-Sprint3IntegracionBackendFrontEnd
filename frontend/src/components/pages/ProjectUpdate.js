@@ -469,7 +469,6 @@ return error ? (
          <button type="reset" className="btn btn-danger"  onClick={cerrarModalInsertar}>cancelar</button>
          </div>
   </div>
-  <hr id="separador"></hr>
           
 
 

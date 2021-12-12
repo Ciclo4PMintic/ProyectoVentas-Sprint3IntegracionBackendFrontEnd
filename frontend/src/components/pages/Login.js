@@ -50,7 +50,7 @@ const Login = ({ history }) => {
   return (
     <div className="login-screen">
       <form onSubmit={loginHandler} className="login-screen__form">
-        <h1>AXIS</h1>
+        <h2>CoroTTo</h2>
         
         {error && <span className="error-message">{error}</span>}
         <div className="form-group">
@@ -100,11 +100,11 @@ const Login = ({ history }) => {
         </button>
         </div>
         <br/>
-        <div>
+        {/* <div>
         <button id="google" type="submit" className="btn btn-primary">
           Ingresar con Gmail
         </button>
-        </div>
+        </div> */}
 
         <span className="login-screen__subtext">
           Don't have an account? <Link to="/register">Register</Link>

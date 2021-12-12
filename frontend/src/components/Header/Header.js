@@ -9,6 +9,7 @@ const Header = () => {
 
   const logoutHandler=()=>{
     localStorage.removeItem("authToken");
+    sessionStorage.removeItem("email")
 
 };
     return(
@@ -24,7 +25,7 @@ const Header = () => {
             <ul className="navbar-nav mr-auto">
 
             <li className="nav-item">
-                <Link to="/home">    <a id="axis"className="nav-link" >AXIS <span className="sr-only">(current)</span></a></Link>
+                <Link to="/home">    <a id="axis"className="nav-link" >CoroTTo <span className="sr-only">(current)</span></a></Link>
                 </li>
                 <li className="nav-item">
                 <Link to="/home">    <a className="nav-link" >Home <span className="sr-only">(current)</span></a></Link>
@@ -64,6 +65,9 @@ const Header = () => {
                
                 </ul>
                 <ul class="navbar-nav navbar-right ">
+                <li className="nav">
+                <Link to="/userUpdate"><a className="nav-link">{sessionStorage.getItem("email")}</a></Link>
+                </li>
 
                 <li className="nav">
                 <Link to="/login"><a id="logout" className="nav-link" onClick={logoutHandler}>Logout</a></Link>

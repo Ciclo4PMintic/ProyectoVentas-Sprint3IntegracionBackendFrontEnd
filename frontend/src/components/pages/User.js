@@ -285,7 +285,7 @@ mostrarModalEditar();
         <div>
         <select id="list" className="list" onChange={(e) => setEstado(e.target.value)} >
        
-        <option value="none">none</option>
+        <option value="pendiente">Pendiente</option>
             <option value="autorizado">Autorizado</option>
             <option value="no autorizado">No autorizado</option>
            

@@ -475,7 +475,7 @@ mostrarModalEditar();
         <div>
         <select id="estado2" className="list" onChange={(e) => setEstado(e.target.value)} >
        
-       <option value="none">none</option>
+       <option value="pendiente">Pendiente</option>
            <option value="activo">Activo</option>
            <option value="inactivo">Inactivo</option>
           
@@ -539,7 +539,7 @@ mostrarModalEditar();
 
           <select id="autorizacion2" className="list" onChange={(e) => setAutorizacion(e.target.value)} >
        
-       <option value="none">none</option>
+          <option value="pendiente">Pendiente</option>
            <option value="Aprobado">Aprobado</option>
            <option value="Rechazado">Rechazado</option>
           
