@@ -14,7 +14,7 @@ const Footer = () => {
         <footer class="footer bg-dark rounded-top text-center gradient">
         <div class="container py-2">
             <p class="text-white my-2">
-                &copy;Axis - 2021
+                &copy;CoroTTo - 2021
             </p>
         </div>
     </footer>
