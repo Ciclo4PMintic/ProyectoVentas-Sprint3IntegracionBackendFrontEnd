@@ -4,12 +4,10 @@
   "description": "",
   "main": "server.js",
   "engines": {
-<<<<<<< HEAD
+
     "node": "14.x",
     "npm":"8.x"
-=======
-    "node": "14.x"
->>>>>>> 85234d93a9531f2bc89e21250624d8bf1a3f7c01
+
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
