@@ -34,14 +34,14 @@ const Header = () => {
 
               
                 <li className="nav-item">
-                <a className="nav-link" >Admin</a>
+                <a className="nav-link" href='/home' >Admin</a>
                <ul className='dropdown'>
               <a className="nav-link" href='/user' >Gestion Usuarios</a>
               <a className="nav-link"href='/project' >Gestionar Proyectos</a>
                </ul>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" >Estudiante</a>
+                <a className="nav-link" href='/home' >Estudiante</a>
                <ul className='dropdown'>
              <a className="nav-link" href="/userUpdate" >Actualizar Datos</a>
                <a className="nav-link" href="/projectList" >Inscripcion Proyectos</a>
@@ -53,7 +53,7 @@ const Header = () => {
                 
 
                 <li className="nav-item">
-                <a className="nav-link" >Lider</a>
+                <a className="nav-link" href='/home'>Lider</a>
                <ul className='dropdown'>
               <a className="nav-link" href="/projectUpdate" >Mis Proyectos</a>
                <a className="nav-link" href="/userUpdate" >Actualizar Datos</a>
