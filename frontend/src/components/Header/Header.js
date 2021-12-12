@@ -3,7 +3,6 @@ import '../css/formatoHome.css'
 import '../plugins/fontawesome-free/css/all.min.css'
 import'../dist/css/adminlte.min.css'
 
-import {Link} from 'react-router-dom'
 
 const Header = () => {
 
